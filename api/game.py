@@ -18,11 +18,12 @@ def get_games(name):
     byte_array = wrapper.api_request('games', DATA_SEARCH.format(name))
     message = json.loads(byte_array)
     for game in message:
-        response.append({
-            'name': game['name'] if "name" in game else "",
-            'cover': get_covers(game['cover']) if "cover" in game else "",
-            'id': game['id']
-        })
+        if "cover" in game:
+            response.append({
+                'name': game['name'] if "name" in game else "",
+                'cover': get_covers(game['cover']),
+                'id': game['id']
+            })
     return response
 
 
