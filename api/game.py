@@ -16,7 +16,6 @@ def get_games(name):
     for game in message:
         genres = []
         platforms = []
-        avaliacao = 0 if "aggregated_rating" not in game else game['aggregated_rating']
         if "genres" in game:
             for i in game['genres']:
                 genres.append(get_genre_platforms(i, 0))
@@ -31,7 +30,7 @@ def get_games(name):
             'generos': genres,
             'plataformas': platforms,
             'descricao': game['summary'] if "summary" in game else "",
-            'avaliacao': avaliacao
+            'avaliacao': game['aggregated_rating'] if "aggregated_rating" in game else 0
         })
 
     return response
