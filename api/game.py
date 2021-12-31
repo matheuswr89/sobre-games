@@ -7,7 +7,7 @@ from twitch import get_stream
 DATA_GAME_INFO = 'where id = {0}; fields name, cover, genres, platforms, summary, url, aggregated_rating, created_at;'
 DATA_COVERS = 'where id = {0}; fields url;'
 DATA_PLATFORM_GENRES = 'where id = {0}; fields name;'
-DATA_SEARCH = 'search "{0}"; fields cover, name, id; where version_parent = null;'
+DATA_SEARCH = 'search "{0}"; fields cover, name, id; where version_parent = null; limit 500;'
 YOUTUBE_URL = 'https://www.youtube.com/embed/'
 
 wrapper = IGDBWrapper(Client_ID, access_token().replace('Bearer ', ''))
