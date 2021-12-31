@@ -25,12 +25,12 @@ def get_games(name):
                 platforms.append(get_genre_platforms(i, 1))
 
         response.append({
-            'name': game['name'],
-            'url': game['url'],
-            'cover': get_covers(game['cover']),
+            'name': game['name'] if "name" in game else "",
+            'url': game['url'] if "url" in game else "",
+            'cover': get_covers(game['cover']) if "cover" in game else "",
             'generos': genres,
             'plataformas': platforms,
-            'descricao': game['summary'],
+            'descricao': game['summary'] if "summary" in game else "",
             'avaliacao': avaliacao
         })
 
