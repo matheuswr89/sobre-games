@@ -18,12 +18,11 @@ def get_games(name):
     byte_array = wrapper.api_request('games', DATA_SEARCH.format(name))
     message = json.loads(byte_array)
     for game in message:
-        if "cover" in game:
-            response.append({
-                'name': game['name'] if "name" in game else "",
-                'cover': get_covers(game['cover']),
-                'id': game['id']
-            })
+        response.append({
+            'name': game['name'] if "name" in game else "",
+            'cover': get_covers(game['cover'])if "cover" in game else 'https://images.igdb.com/igdb/image/upload/t_cover_big/nocover.png',
+            'id': game['id']
+        })
     return response
 
 
@@ -70,7 +69,8 @@ def get_covers(id):
 
 def get_trailer(nomeFilme):
     youtube = build('youtube', 'v3', developerKey=API_KEY_YOUTUBE)
-    req = youtube.search().list(q=nomeFilme + "game trailer", part='snippet', type='video', maxResults=1)
+    req = youtube.search().list(q=nomeFilme + "game trailer",
+                                part='snippet', type='video', maxResults=1)
     resp = req.execute()
     if(len(resp['items'])) > 0:
         return YOUTUBE_URL+resp['items'][0]['id']['videoId']
