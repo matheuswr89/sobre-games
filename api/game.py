@@ -20,7 +20,7 @@ def get_games(name):
     for game in message:
         response.append({
             'name': game['name'] if "name" in game else "",
-            'cover': get_covers(game['cover'])if "cover" in game else 'https://images.igdb.com/igdb/image/upload/t_cover_big/nocover.png',
+            'cover': get_covers(game['cover'])if "cover" in game else '//images.igdb.com/igdb/image/upload/t_cover_big/nocover.png',
             'id': game['id']
         })
     return response
