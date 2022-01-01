@@ -7,7 +7,7 @@ from twitch import get_stream
 DATA_GAME_INFO = 'where id = {0}; fields name, cover, genres, platforms, summary, url, aggregated_rating, first_release_date;'
 DATA_COVERS = 'where id = {0}; fields url;'
 DATA_PLATFORM_GENRES = 'where id = {0}; fields name;'
-DATA_SEARCH = 'search "{0}"; fields cover, name, id; where version_parent = null; limit 50;'
+DATA_SEARCH = 'search "{0}"; fields cover, name, id; where version_parent = null; limit 100;'
 YOUTUBE_URL = 'https://www.youtube.com/embed/'
 
 wrapper = IGDBWrapper(Client_ID, access_token().replace('Bearer ', ''))
@@ -20,7 +20,7 @@ def get_games(name):
     for game in message:
         response.append({
             'name': game['name'] if "name" in game else "",
-            'cover': get_covers(game['cover'])if "cover" in game else '//images.igdb.com/igdb/image/upload/t_cover_big/nocover.png',
+            'cover': get_covers(game['cover']) if "cover" in game else '//images.igdb.com/igdb/image/upload/t_cover_big/nocover.png',
             'id': game['id']
         })
     return response
@@ -43,7 +43,7 @@ def get_game_info(id):
         response.append({
             'name': game['name'] if "name" in game else "",
             'url': game['url'] if "url" in game else "",
-            'cover': get_covers(game['cover']) if "cover" in game else "",
+            'cover': get_covers(game['cover']) if "cover" in game else '//images.igdb.com/igdb/image/upload/t_cover_big/nocover.png',
             'generos': genres,
             'plataformas': platforms,
             'descricao': game['summary'] if "summary" in game else "",
