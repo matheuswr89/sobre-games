@@ -4,7 +4,7 @@ from googleapiclient.discovery import build
 from utils import Client_ID, access_token, API_KEY_YOUTUBE
 from twitch import get_stream
 
-DATA_GAME_INFO = 'where id = {0}; fields name, cover, genres, platforms, summary, url, aggregated_rating, created_at;'
+DATA_GAME_INFO = 'where id = {0}; fields name, cover, genres, platforms, summary, url, aggregated_rating, first_release_date;'
 DATA_COVERS = 'where id = {0}; fields url;'
 DATA_PLATFORM_GENRES = 'where id = {0}; fields name;'
 DATA_SEARCH = 'search "{0}"; fields cover, name, id; where version_parent = null; limit 50;'
@@ -50,7 +50,7 @@ def get_game_info(id):
             'descricao': game['summary'] if "summary" in game else "",
             'avaliacao': game['aggregated_rating'] if "aggregated_rating" in game else 0,
             'youtube_id': get_trailer(game['name']),
-            'data_criacao': game['created_at'] if "created_at" in game else "",
+            'data_criacao': game['first_release_date'] if "first_release_date" in game else "",
             'streams': get_stream(game['name'])
         })
 
