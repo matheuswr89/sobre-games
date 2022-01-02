@@ -15,7 +15,7 @@ input.onkeydown = (event) => {
 
 function inicia() {
   divSearch.innerHTML = divInfo.innerHTML = "";
-  divSearch.innerHTML = `<p>Carregando....</p><img src="loading.gif">`;
+  divSearch.innerHTML = `<p>Carregando....</p><img src="loading.gif" width="100px">`;
   if (input.value != "") {
     if (localStorage.getItem(SEARCH_GAME + input.value) != null)
       resultSearch(JSON.parse(localStorage.getItem(SEARCH_GAME + input.value)));
@@ -39,15 +39,15 @@ function resultSearch(json) {
 
 function infoGame(json, id) {
   divSearch.innerHTML = divInfo.innerHTML = "";
-  divSearch.innerHTML = `<p>Carregando....</p><img src="loading.gif" width="100px">`;
+  divInfo.innerHTML = `<p>Carregando....</p><img src="loading.gif" width="100px">`;
   if (id == 0) {
     acessaApi(GAME_INFO + json);
   } else {
     const result = json.response[0];
     console.log(result);
-    
+
     let resultStream = `<div class="stream">`;
-    
+
     if (result.streams != 400) {
       for (let i in result.streams) {
         resultStream += `
@@ -59,7 +59,7 @@ function infoGame(json, id) {
         `;
       }
     } else resultStream += `<h2>Nenhuma stream para esse jogo!</h2></div>`;
-    
+
     let response = `
     <img class="rifth" src="https:${result.cover}">
     <div class="game-info">
@@ -76,7 +76,7 @@ function infoGame(json, id) {
     </div>
     ${resultStream}
     `;
-    
+
     divInfo.innerHTML = response;
   }
 }

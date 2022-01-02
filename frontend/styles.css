@@ -135,16 +135,15 @@ section #info .video-container iframe {
   height: 100%;
 }
 
-section > h2{
+section > h2 {
   margin: 20px 0;
   display: flex;
-  justify-content:center;
-  align-items:center;
+  justify-content: center;
+  align-items: center;
 }
 
 @media only screen and (max-width: 600px) {
-
-  section #info img.rifth{
+  section #info img.rifth {
     margin-right: 0;
   }
   section #search span {
