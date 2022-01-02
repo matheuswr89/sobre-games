@@ -136,6 +136,7 @@ section #info .video-container iframe {
 }
 
 section > h2{
+  margin: 20px 0;
   display: flex;
   justify-content:center;
   align-items:center;

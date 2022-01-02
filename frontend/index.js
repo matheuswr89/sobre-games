@@ -15,7 +15,7 @@ input.onkeydown = (event) => {
 
 function inicia() {
   divSearch.innerHTML = divInfo.innerHTML = "";
-
+  divSearch.innerHTML = `<p>Carregando....</p><img src="loading.gif">`;
   if (input.value != "") {
     if (localStorage.getItem(SEARCH_GAME + input.value) != null)
       resultSearch(JSON.parse(localStorage.getItem(SEARCH_GAME + input.value)));
@@ -39,43 +39,44 @@ function resultSearch(json) {
 
 function infoGame(json, id) {
   divSearch.innerHTML = divInfo.innerHTML = "";
+  divSearch.innerHTML = `<p>Carregando....</p><img src="loading.gif" width="100px">`;
   if (id == 0) {
     acessaApi(GAME_INFO + json);
   } else {
     const result = json.response[0];
     console.log(result);
-
+    
     let resultStream = `<div class="stream">`;
-
-    if (result.streams) {
+    
+    if (result.streams != 400) {
       for (let i in result.streams) {
         resultStream += `
-          <a href="${result.streams[i].user}">
-            <img src="${result.streams[i].imagem}">
-            <p>${result.streams[i].titulo}</p>
-            <p><b>Inicio:</b>${date2(result.streams[i].inicio)}</p>
-          </a>
+        <a href="${result.streams[i].user}">
+        <img src="${result.streams[i].imagem}">
+        <p>${result.streams[i].titulo}</p>
+        <p><b>Inicio:</b>${date2(result.streams[i].inicio)}</p>
+        </a>
         `;
       }
     } else resultStream += `<h2>Nenhuma stream para esse jogo!</h2></div>`;
-
+    
     let response = `
-      <img class="rifth" src="https:${result.cover}">
-      <div class="game-info">
-        <h2>${result.name}</h2>
-        <p>${result.descricao}</p>
-        <p><b>Gêneros:</b> ${result.generos.join(", ")}</p>
-        <p><b>Plataformas:</b> ${result.plataformas.join(", ")}</p>
-        <p><b>Data lançamento:</b> ${date(result.data_criacao)}</p>
-        <a href="${result.url}" target="_blank">Acessar página original</a>
-      </div>
-      <div class="video-container">
-        <iframe src="${result.youtube_id}" 
-        frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </div>
-      ${resultStream}
+    <img class="rifth" src="https:${result.cover}">
+    <div class="game-info">
+    <h2>${result.name}</h2>
+    <p>${result.descricao}</p>
+    <p><b>Gêneros:</b> ${result.generos.join(", ")}</p>
+    <p><b>Plataformas:</b> ${result.plataformas.join(", ")}</p>
+    <p><b>Data lançamento:</b> ${date(result.data_criacao)}</p>
+    <a href="${result.url}" target="_blank">Acessar página original</a>
+    </div>
+    <div class="video-container">
+    <iframe src="${result.youtube_id}" 
+    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    ${resultStream}
     `;
-
+    
     divInfo.innerHTML = response;
   }
 }
@@ -86,7 +87,7 @@ const date = (timestamp) => {
   let dateSplit = date.toString().split(" ");
   const diff = Math.abs(now.getTime() - date.getTime());
   const days = Math.ceil(diff / 31557600000);
-  return `${dateSplit[1]} ${dateSplit[2]}, ${dateSplit[3]} (${days} anos)`;
+  return `${dateSplit[1]} ${dateSplit[2]}, ${dateSplit[3]} (${days} year)`;
 };
 
 const date2 = (data) => {
