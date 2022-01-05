@@ -44,7 +44,6 @@ function infoGame(json, id) {
     acessaApi(GAME_INFO + json);
   } else {
     const result = json.response[0];
-    console.log(result);
 
     let resultStream = `<div class="stream">`;
 
@@ -52,27 +51,37 @@ function infoGame(json, id) {
       for (let i in result.streams) {
         resultStream += `
         <a href="${result.streams[i].user}">
-        <img src="${result.streams[i].imagem}">
-        <p>${result.streams[i].titulo}</p>
-        <p><b>Inicio:</b>${date2(result.streams[i].inicio)}</p>
+          <img src="${result.streams[i].imagem}">
+          <p>${result.streams[i].titulo}</p>
+          <p><b>Inicio: </b>${date2(result.streams[i].inicio)}</p>
+          <p><b>Idioma: </b>${result.streams[i].idioma.toUpperCase()}</p>
         </a>
         `;
       }
     } else resultStream += `<h2>Nenhuma stream para esse jogo!</h2></div>`;
 
     let response = `
-    <img class="rifth" src="https:${result.cover}">
+    <div class="poster">
+      <img class="imagem-poster" src="https:${result.cover}">
+      <div class="single-chart">
+        <svg viewBox="0 0 36 36" class="circular-chart orange">
+          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <path class="circle" stroke-dasharray="${result.avaliacao}, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <text x="18" y="20.35" class="percentage">${result.avaliacao.toLocaleString(undefined,{ minimumFractionDigits: 2, maximumFractionDigits: 2 })}</text>
+        </svg>
+      </div>
+    </div>
     <div class="game-info">
-    <h2>${result.name}</h2>
-    <p>${result.descricao}</p>
-    <p><b>Gêneros:</b> ${result.generos.join(", ")}</p>
-    <p><b>Plataformas:</b> ${result.plataformas.join(", ")}</p>
-    <p><b>Data lançamento:</b> ${date(result.data_criacao)}</p>
-    <a href="${result.url}" target="_blank">Acessar página original</a>
+      <h2>${result.name}</h2>
+      <p>${result.descricao}</p>
+      <p><b>Gêneros:</b> ${result.generos.join(", ")}</p>
+      <p><b>Plataformas:</b> ${result.plataformas.join(", ")}</p>
+      <p><b>Data lançamento:</b> ${date(result.data_criacao)}</p>
+      <a href="${result.url}" target="_blank">Acessar página original</a>
     </div>
     <div class="video-container">
-    <iframe src="${result.youtube_id}" 
-    frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe src="${result.youtube_id}" 
+      frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
     ${resultStream}
     `;

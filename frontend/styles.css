@@ -73,14 +73,19 @@ section #search span img {
   border-radius: 5px;
 }
 
-section #info img.rifth {
+section #info img.imagem-poster {
   width: 250px;
   height: 350px;
-  margin-right: 30px;
+  position: absolute;
+}
+
+section #info div.poster {
+  height: 350px;
 }
 
 section #info .game-info {
   margin: 10px 0;
+  margin-left: 30px;
   max-width: 500px;
 }
 
@@ -135,17 +140,63 @@ section #info .video-container iframe {
   height: 100%;
 }
 
-section > h2 {
-  margin: 20px 0;
+section h2 {
+  margin: 20px 20px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-@media only screen and (max-width: 600px) {
-  section #info img.rifth {
-    margin-right: 0;
+section #info .poster .single-chart {
+  position: relative;
+  width: 250px;
+  justify-content: space-around;
+  background: linear-gradient(0, rgba(2,0,36,1) 0%, rgba(0,0,0,0) 90%);
+  top: 270px;
+}
+
+section #info .poster .single-chart .circular-chart {
+  display: block;
+  margin: 0 auto;
+  width: 80px;
+  border-radius: 80px;
+}
+
+section #info .poster .single-chart .circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+
+section #info .poster .single-chart .circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
   }
+}
+
+section #info .poster .single-chart .circular-chart.orange .circle {
+  stroke: #ff9f00;
+}
+
+section #info .poster .single-chart .percentage {
+  fill: #fff;
+  font-family: sans-serif;
+  font-size: 0.5em;
+  text-anchor: middle;
+}
+
+@media only screen and (max-width: 600px) {
+  section #info .game-info {
+    margin-left: 0;
+   }
+
   section #search span {
     height: 260px;
   }
