@@ -33,4 +33,8 @@ Front-end url = https://trabalho-webservices.vercel.app
 
 # Vídeo de apresentação
 
-[![Watch the video]](.statics/video.mp4)
+<video width="400" controls>
+  <source src=".statics/video.mp4" type="video/mp4">
+  <source src=".statics/video.ogg" type="video/ogg">
+  Your browser does not support HTML video.
+</video>
