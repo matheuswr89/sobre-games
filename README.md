@@ -26,11 +26,11 @@ Front-end url = https://trabalho-webservices.vercel.app
 
 # Prints
 
-<img src=".statics/home.png">
-<img src=".statics/search.png">
-<img src=".statics/game-info.png">
+<img src="assets/home.png">
+<img src="assets/search.png">
+<img src="assets/game-info.png">
 
 
 # Vídeo de apresentação
 
-![caption](.statics/video.mov)
+![caption](assets/video.mov)
