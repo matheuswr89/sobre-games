@@ -33,4 +33,4 @@ Front-end url = https://trabalho-webservices.vercel.app
 
 # Vídeo de apresentação
 
-<iframe src="https://drive.google.com/file/d/1nuZB-iX8SRCjaCQXp6MvGKSzh0CyFnxt/preview" width="640" height="480" allow="autoplay"></iframe>
+[![Watch the video](assets/img-video.png)](https://drive.google.com/file/d/1nuZB-iX8SRCjaCQXp6MvGKSzh0CyFnxt/view?usp=sharing)
